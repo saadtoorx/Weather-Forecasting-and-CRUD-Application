@@ -2,6 +2,17 @@
 
 A comprehensive weather tracking application with real-time weather data, forecasts, CRUD operations, and additional API integrations.
 
+## 📦 Repository
+
+- **Remote:** https://github.com/saadtoorx/Weather-Forecasting-and-CRUD-Application.git
+- To clone this project:
+
+```bash
+git clone https://github.com/saadtoorx/Weather-Forecasting-and-CRUD-Application.git
+```
+
+This repository contains the full project; push requests and issues are welcome.
+
 ## ✨ Features Overview
 
 ### Task 1: Basic Weather App ✅
