@@ -1,4 +1,4 @@
-# 🌤️ Advanced Weather Application
+# 🌤️ Weather Forcasting and CRUD Application
 
 A comprehensive weather tracking application with real-time weather data, forecasts, CRUD operations, and additional API integrations.
 
