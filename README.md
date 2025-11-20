@@ -453,7 +453,7 @@ git push heroku main
 
 ## 👤 Author
 
-Created for AI Engineer Internship Assessment
+saadtoorx
 
 ## 📄 License
 
