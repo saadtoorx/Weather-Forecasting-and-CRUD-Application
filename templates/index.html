@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Weather Application</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+    
+    <!-- Header -->
+    <header class="header">
+        <h1><i class="fas fa-cloud-sun"></i> Advanced Weather App</h1>
+        <p>Current weather, forecasts, and historical data tracking</p>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+        
+        <!-- LEFT COLUMN: Weather Search -->
+        <div class="left-column">
+            
+            <!-- Search Card -->
+            <div class="card">
+                <h2><i class="fas fa-search"></i> Search Weather</h2>
+                
+                <input 
+                    type="text" 
+                    id="searchLocation" 
+                    placeholder="Enter city, zip code, or coordinates (e.g., London, 10001, 40.7,-74)"
+                    onkeypress="handleSearchKeyPress(event)"
+                >
+                
+                <div class="button-group">
+                    <button onclick="searchWeather()" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button onclick="useCurrentLocation()" class="btn btn-secondary">
+                        <i class="fas fa-location-crosshairs"></i> My Location
+                    </button>
+                </div>
+                
+                <div id="searchError" class="error-message" style="display: none;"></div>
+            </div>
+
+            <!-- Current Weather Display -->
+            <div id="currentWeatherCard" class="card weather-display" style="display: none;">
+                <h2><i class="fas fa-temperature-high"></i> Current Weather</h2>
+                <div id="currentWeatherContent"></div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div id="forecastCard" class="card" style="display: none;">
+                <h2><i class="fas fa-calendar-days"></i> 5-Day Forecast</h2>
+                <div id="forecastContent" class="forecast-grid"></div>
+            </div>
+
+            <!-- Google Maps -->
+            <div id="mapCard" class="card" style="display: none;">
+                <h2><i class="fas fa-map-marked-alt"></i> Location Map</h2>
+                <div id="mapContent"></div>
+            </div>
+
+            <!-- YouTube Videos -->
+            <div id="videosCard" class="card" style="display: none;">
+                <h2><i class="fab fa-youtube"></i> Travel Videos</h2>
+                <div id="videosContent" class="videos-grid"></div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: CRUD Operations -->
+        <div class="right-column">
+            
+            <!-- Save Weather Data Card -->
+            <div class="card">
+                <h2><i class="fas fa-save"></i> Save Weather Data</h2>
+                
+                <input 
+                    type="text" 
+                    id="saveLocation" 
+                    placeholder="Location (e.g., London, Paris)"
+                >
+                
+                <div class="date-inputs">
+                    <div class="input-group">
+                        <label>Start Date:</label>
+                        <input type="date" id="startDate" max="">
+                    </div>
+                    <div class="input-group">
+                        <label>End Date:</label>
+                        <input type="date" id="endDate" max="">
+                    </div>
+                </div>
+                
+                <button onclick="saveWeatherRecord()" class="btn btn-success">
+                    <i class="fas fa-save"></i> Save Record
+                </button>
+                
+                <div id="saveError" class="error-message" style="display: none;"></div>
+                
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Save weather data for a specific date range. You can view, edit, and export this data later.</p>
+                </div>
+            </div>
+
+            <!-- Saved Records List -->
+            <div class="card">
+                <h2><i class="fas fa-database"></i> Saved Weather Records</h2>
+                <div id="recordsList" class="records-container">
+                    <div class="loading-message">Loading records...</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Weather Record</h2>
+                <button onclick="closeEditModal()" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <input type="hidden" id="editRecordId">
+                
+                <div class="input-group">
+                    <label>Location:</label>
+                    <input type="text" id="editLocation" placeholder="Location">
+                </div>
+                
+                <div class="date-inputs">
+                    <div class="input-group">
+                        <label>Start Date:</label>
+                        <input type="date" id="editStartDate">
+                    </div>
+                    <div class="input-group">
+                        <label>End Date:</label>
+                        <input type="date" id="editEndDate">
+                    </div>
+                </div>
+                
+                <div id="editError" class="error-message" style="display: none;"></div>
+            </div>
+            
+            <div class="modal-footer">
+                <button onclick="updateRecord()" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Update
+                </button>
+                <button onclick="closeEditModal()" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
